@@ -21,6 +21,8 @@
   <div>
     <button onclick="location.href='login.html'">login </button>
     <button onclick="location.href='/add'">Add user</button>
+    <button onclick="location.href='signIn.html'">View publications</button>
+    <input type="hidden" name="command" value="publication"/>
   </div>
 </div>
 </body>

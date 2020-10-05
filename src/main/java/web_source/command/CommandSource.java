@@ -14,8 +14,8 @@ public class CommandSource {
         static {
             // common commands
             commands.put("login", new LoginCommand());
-          /*  commands.put("logout", new LogoutCommand());
-            commands.put("noCommand", new NoCommand());
+            commands.put("publication", new PublicationCommand());
+           /* commands.put("noCommand", new NoCommand());
             commands.put("viewSettings", new ViewSettingsCommand());
             commands.put("updateSettings", new UpdateSettingsCommand());
 

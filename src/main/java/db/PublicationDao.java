@@ -62,13 +62,13 @@ public class PublicationDao {
      *
      * @return List of publications entities.
      */
-    public List<Publication> findPublications() {
+    public static List<Publication> findPublications() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
         ResultSet rs = null;
         Connection con = null;
         try {
-            con = DBManager.getInstance().getConnection();
+            con = DBManager.getInstance().getConnectionWithDriverManager();
             PublicationMapper mapper = new PublicationMapper();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL__FIND_ALL_PUBLICATIONS);

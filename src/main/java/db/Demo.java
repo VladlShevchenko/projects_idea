@@ -11,6 +11,7 @@ public class Demo {
     public static void main(String[] args) {
         System.out.println(UserDao.findUser((long) 1));
         System.out.println(UserDao.findUserByLogin("Oleg"));
+        System.out.println(PublicationDao.findPublications());
 
     }
 

@@ -31,5 +31,15 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>publicaton</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>publicaton</servlet-name>
+        <url-pattern>/publicaton</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
