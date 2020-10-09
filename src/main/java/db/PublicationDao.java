@@ -219,7 +219,7 @@ public class PublicationDao {
         public Topic mapRow(ResultSet rs) {
             try {
                 Topic topic = new Topic();
-                topic.setId(rs.getLong(Constant.ENTITY__ID));
+                topic.setId(rs.getInt(Constant.ENTITY__ID));
                 topic.setName(rs.getString(Constant.TOPIC__NAME));
                 return topic;
             } catch (SQLException e) {
@@ -237,7 +237,7 @@ public class PublicationDao {
         public Publication mapRow(ResultSet rs) {
             try {
                 Publication publication = new Publication();
-                publication.setId(rs.getLong(Constant.ENTITY__ID));
+                publication.setId(rs.getInt(Constant.ENTITY__ID));
                 publication.setName(rs.getString(Constant.PUBLICATION__NAME));
                 publication.setPriceForMonth(rs.getInt(Constant.PUBLICATION__PRICE_FOR_MONTH));
                 publication.setImage((Blob) rs.getBlob(Constant.PUBLICATION__IMAGE));

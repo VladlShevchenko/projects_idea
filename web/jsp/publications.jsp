@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Accounts</title>
+    <title>Publications</title>
 </head>
 <body>
 <h2>Users List</h2>
@@ -18,7 +18,7 @@
     <tr><th>Name</th><th>Price</th><th>Description</th><th>Topic</th></tr>
 
     <c:forEach var="publication" items="${publication}">
-        <tr><td>${publication.name}</td>
+        <tr><td><a href="index.jsp">${publication.name}</a></td>
             <td>${publication.priceForMonth}</td>
             <td>${publication.description}</td>
             <td>${publication.topicId}</td>

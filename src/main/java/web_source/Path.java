@@ -6,8 +6,8 @@ public final class Path {
     public static final String PAGE__WELCOME = "/welcome.html";
     public static final String PAGE__ERROR_PAGE = "jsp/add.jsp";
     public static final String PAGE__LIST_MENU = "jsp/publications.jsp";
-    public static final String PAGE__LIST_ORDERS = "/WEB-INF/jsp/admin/list_orders.jsp";
-    public static final String PAGE__SETTINGS = "/WEB-INF/jsp/settings.jsp";
+    public static final String PAGE__WELCOME_ADMIN = "jsp/admin/welcomeAdmin.jsp";
+    public static final String PAGE__WELCOME_USER = "jsp/user/welcomeUser.jsp";
 
     // commands
     public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";

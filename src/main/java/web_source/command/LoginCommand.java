@@ -44,15 +44,14 @@ public class LoginCommand extends Command {
             log.error("errorMessage --> " + errorMessage);
             return forward;
         } else {
-            RequestDispatcher rd;
             Role userRole = Role.getRole(user);
             log.trace("userRole --> " + userRole);
 
-           /* if (userRole == Role.ADMIN)
-                forward = Path.COMMAND__LIST_ORDERS;
+            if (userRole == Role.ADMIN)
+                forward = Path.PAGE__WELCOME_ADMIN;
 
-            if (userRole == Role.CLIENT)
-                forward = Path.COMMAND__LIST_MENU;*/
+            if (userRole == Role.USER)
+                forward = Path.PAGE__WELCOME_USER;
 
             session.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
@@ -61,7 +60,7 @@ public class LoginCommand extends Command {
             log.trace("Set the session attribute: userRole --> " + userRole);
 
             log.info("User " + user + " logged as " + userRole.toString().toLowerCase());
-            forward=Path.PAGE__WELCOME;
+           // forward=Path.PAGE__WELCOME;
         }
 
         log.debug("Command finished");

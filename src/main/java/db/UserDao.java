@@ -76,7 +76,7 @@ public class UserDao {
     }
 
 
-    public List<User> findAllUsers() {
+    public static List<User> findAllUsers() {
         List<User> userList = new ArrayList<User>();
         Statement stmt = null;
         ResultSet rs = null;
@@ -169,18 +169,42 @@ public class UserDao {
         pstmt.close();
     }
 
+    public static void insertUser(User petrov) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String query1 = "INSERT INTO account(login,email,password,bill,role_id)  VALUES (?,?,?,?,?);";
+        try {
+            conn = DBManager.getInstance().getConnectionWithDriverManager();
+            stmt = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, petrov.getLogin());
+            stmt.setString(2, petrov.getEmail());
+            stmt.setString(3, petrov.getPassword());
+            stmt.setFloat(4, petrov.getBill());
+            stmt.setInt(5, petrov.getRoleId());
+            stmt.executeUpdate();
+            rs = stmt.getGeneratedKeys();
+            if (rs.next()) {petrov.setId(rs.getInt(1));}
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            DBManager.getInstance().rollbackAndClose(conn);
+        }
+        finally {
+            DBManager.getInstance().commitAndClose(conn);
+        }
+    }
 
 
-    /**
-     * Extracts a user from the result set row.
-     */
+        /**
+         * Extracts a user from the result set row.
+         */
     private static class UserMapper implements EntityMapper<User> {
 
         @Override
         public User mapRow(ResultSet rs) {
             try {
                 User user = new User();
-                user.setId(rs.getLong(Constant.ENTITY__ID));
+                user.setId(rs.getInt(Constant.ENTITY__ID));
                 user.setLogin(rs.getString(Constant.USER__LOGIN));
                 user.setEmail(rs.getString(Constant.USER__EMAIL));
                 user.setPassword(rs.getString(Constant.USER__PASSWORD));
