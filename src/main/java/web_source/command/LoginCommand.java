@@ -21,6 +21,7 @@ public class LoginCommand extends Command {
         // obtain login and password from the request
         String login = request.getParameter("username");
         log.trace("Request parameter: loging --> " + login);
+        System.out.println(login);
 
         String password = request.getParameter("userpass");
 

@@ -8,6 +8,7 @@ public final class Path {
     public static final String PAGE__LIST_MENU = "jsp/publications.jsp";
     public static final String PAGE__WELCOME_ADMIN = "jsp/admin/welcomeAdmin.jsp";
     public static final String PAGE__WELCOME_USER = "jsp/user/welcomeUser.jsp";
+    public static final String PAGE__PUBLICATION_VIEW = "jsp/publicationView.jsp";
 
     // commands
     public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";

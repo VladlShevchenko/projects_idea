@@ -51,5 +51,34 @@
         <url-pattern>/signIn</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>publicationView</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>publicationView</servlet-name>
+        <url-pattern>/publicationView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>utf8filter</filter-name>
+        <filter-class>web_source.filter.UtfFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>utf8filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

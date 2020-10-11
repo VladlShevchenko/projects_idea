@@ -30,6 +30,7 @@ public class FrontController extends HttpServlet {
 
         // extract command name from the request
         String commandName = request.getParameter("command");
+        //System.out.println(commandName);
         log.trace("Request parameter: command --> " + commandName);
 
         // obtain command object by its name
@@ -42,7 +43,6 @@ public class FrontController extends HttpServlet {
 
         log.debug("Controller finished, now go to forward address --> " + forward);
 
-        // if the forward address is not null go to the address
         if (forward != null) {
             RequestDispatcher disp = request.getRequestDispatcher(forward);
             disp.forward(request, response);

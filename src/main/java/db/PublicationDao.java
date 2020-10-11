@@ -4,6 +4,7 @@ import com.mysql.cj.jdbc.Blob;
 import db.entity.Publication;
 import db.entity.Receipt;
 import db.entity.Topic;
+import db.entity.User;
 
 
 import java.sql.*;
@@ -13,6 +14,11 @@ import java.util.List;
 public class PublicationDao {
     private static final String SQL__FIND_ALL_PUBLICATIONS =
             "SELECT * FROM publication";
+
+    private static final String SQL__FIND_PULICATION_BY_NAME =
+            "SELECT * FROM publication WHERE name LIKE ?";
+    private static final String SQL__FIND_PULICATION_BY_Id =
+            "SELECT * FROM publication WHERE id=?";
 
     private static final String SORT_PUBLICATIONS_BY_NAME_ASC =
             "SELECT * FROM publication ORDER BY name";
@@ -173,7 +179,53 @@ public class PublicationDao {
         }
         return publicationsList;
     }
+    public static Publication findPublicationByName(String name) {
+        Publication publication = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationDao.PublicationMapper mapper = new PublicationDao.PublicationMapper();
+            pstmt = con.prepareStatement(SQL__FIND_PULICATION_BY_NAME);
+            pstmt.setString(1, "%"+name+"%");
+            rs = pstmt.executeQuery();
+            if (rs.next())
+                publication=mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publication;
+    }
 
+    public static Publication findPublicationById(int id) {
+        Publication publication = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationDao.PublicationMapper mapper = new PublicationDao.PublicationMapper();
+            pstmt = con.prepareStatement(SQL__FIND_PULICATION_BY_Id);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next())
+                publication=mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publication;
+    }
     /**
      * Returns publications with given identifiers.
      *
