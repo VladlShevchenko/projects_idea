@@ -18,6 +18,7 @@ public class CommandSource {
             commands.put("signIn", new SignInCommand());
             commands.put("publicationView", new PublicationViewCommand());
             commands.put("search", new SearchCommand());
+            commands.put("cart", new CartCommand());
            /* commands.put("noCommand", new NoCommand());
             commands.put("viewSettings", new ViewSettingsCommand());
             commands.put("updateSettings", new UpdateSettingsCommand());

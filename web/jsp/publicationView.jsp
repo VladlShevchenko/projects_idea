@@ -35,14 +35,19 @@
 </div>
 <table>
     <tr><th>Login</th><th></th><th></th><th></th></tr>
-
+    <form  action="cart" method="post" >
     <c:forEach var="publication" items="${publication}">
         <tr><td>${publication.name}</td>
             <td>${publication.priceForMonth}</td>
             <td>${publication.description}</td>
             <td>${publication.topicId}</td>
+            <input type="hidden" name="command" value="cart"/>
+            <input type="hidden" name="publication_id" value="${publication.id}"/>
+            <button>Add to cart</button>
         </tr>
     </c:forEach>
+    </form>
+
 
 </table>
 </body>

@@ -33,7 +33,7 @@ public class SearchCommand extends Command {
             }
         });*/
 
-        // put menu items list to the request
+        // put publications to the request
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
 

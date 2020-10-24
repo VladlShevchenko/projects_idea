@@ -37,5 +37,4 @@
               defaultAutoCommit="false"
               defaultTransactionIsolation="READ_COMMITTED"
               url="jdbc:mysql://localhost:3306/mydb?useUnicode=true"/>
-
 </Context>

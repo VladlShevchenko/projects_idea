@@ -64,6 +64,8 @@ public class LoginCommand extends Command {
            // forward=Path.PAGE__WELCOME;
         }
 
+
+
         log.debug("Command finished");
         return forward;
     }
