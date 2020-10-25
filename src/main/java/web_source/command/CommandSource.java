@@ -19,6 +19,12 @@ public class CommandSource {
             commands.put("publicationView", new PublicationViewCommand());
             commands.put("search", new SearchCommand());
             commands.put("cart", new CartCommand());
+            commands.put("deleteItem", new DeleteItemFromCartCommand());
+            commands.put("account", new AccountCommand());
+            commands.put("logout", new LogoutCommand());
+            commands.put("buy", new BuyCommand());
+            commands.put("deleteSubscribe", new DeleteSubscribeFromAccount());
+
            /* commands.put("noCommand", new NoCommand());
             commands.put("viewSettings", new ViewSettingsCommand());
             commands.put("updateSettings", new UpdateSettingsCommand());

@@ -133,7 +133,7 @@ public class UserDao {
      * @param user
      *            user to update.
      */
-    public void updateUser(User user) {
+    public static void updateUser(User user) {
         Connection con = null;
         try {
             con = DBManager.getInstance().getConnectionWithDriverManager();
@@ -157,7 +157,7 @@ public class UserDao {
      *            user to update.
      * @throws SQLException
      */
-    public void updateUser(Connection con, User user) throws SQLException {
+    public static void updateUser(Connection con, User user) throws SQLException {
         PreparedStatement pstmt = con.prepareStatement(SQL_UPDATE_USER);
         int k = 1;
         pstmt.setString(k++, user.getLogin());

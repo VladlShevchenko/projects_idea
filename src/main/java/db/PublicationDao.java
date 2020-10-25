@@ -15,6 +15,18 @@ public class PublicationDao {
     private static final String SQL__FIND_ALL_PUBLICATIONS =
             "SELECT * FROM publication";
 
+    private static final String SQL__FIND_PUBLICATIONS_BY_ACCOUNT =
+            "select mydb.publication.id ,mydb.receipt.id,mydb.publication.name, mydb.publication.price_for_mounth\n" +
+                    "from mydb.publication \t\n" +
+                    "\t\tjoin mydb.receipt_has_publication \n" +
+                    "\t\ton receipt_has_publication.publication_id=publication.id\n" +
+                    "\t\tjoin mydb.receipt \n" +
+                    "\t\ton  receipt.id=receipt_has_publication.receipt_id\n" +
+                    "            where mydb.receipt.account_id=? and mydb.receipt.status_id=2";
+
+    private static final String SQL__FIND_PUBLICATIONS_FOR_USER =
+            "select mydb.publication.id ,mydb.receipt.id , mydb.publication.name, mydb.publication.price_for_mounth from mydb.publication \tjoin mydb.receipt_has_publication  on receipt_has_publication.publication_id=publication.id join mydb.receipt  on  receipt.id=receipt_has_publication.receipt_id where mydb.receipt.account_id=? and mydb.receipt.status_id=1;";
+
     private static final String SQL__FIND_PULICATION_BY_NAME =
             "SELECT * FROM publication WHERE name LIKE ?";
     private static final String SQL__FIND_PULICATION_BY_Id =
@@ -88,6 +100,57 @@ public class PublicationDao {
         }
         return publicationsList;
     }
+
+
+    public static List<Publication> findPublicationForCart(int account_id) {
+        List<Publication> publications = new ArrayList<Publication>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationDao.PublicationMapperForCart mapper = new PublicationDao.PublicationMapperForCart();
+            pstmt = con.prepareStatement(SQL__FIND_PUBLICATIONS_BY_ACCOUNT);
+            pstmt.setInt(1, account_id);
+            rs = pstmt.executeQuery();
+            while (rs.next())
+                publications.add(mapper.mapRow(rs));
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publications;
+    }
+
+    public static List<Publication> findPublicationForAccount(int account_id) {
+        List<Publication> publications = new ArrayList<Publication>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationDao.PublicationMapperForCart mapper = new PublicationDao.PublicationMapperForCart();
+            pstmt = con.prepareStatement(SQL__FIND_PUBLICATIONS_FOR_USER);
+            pstmt.setInt(1, account_id);
+            rs = pstmt.executeQuery();
+            while (rs.next())
+                publications.add(mapper.mapRow(rs));
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publications;
+    }
+
+
 
     ////Sorting methods!!!
     public List<Publication> sortPublicationsByName() {
@@ -295,6 +358,22 @@ public class PublicationDao {
                 publication.setImage((Blob) rs.getBlob(Constant.PUBLICATION__IMAGE));
                 publication.setDescription(rs.getString(Constant.PUBLICATION__DESCRIPTION));
                 publication.setTopicId(rs.getLong(Constant.PUBLICATION__TOPIC_ID));
+                return publication;
+            } catch (SQLException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+    }
+
+    private static class PublicationMapperForCart implements EntityMapper<Publication> {
+
+        @Override
+        public Publication mapRow(ResultSet rs) {
+            try {
+                Publication publication = new Publication();
+                publication.setId(rs.getInt(Constant.ENTITY__ID));
+                publication.setName(rs.getString(Constant.PUBLICATION__NAME));
+                publication.setPriceForMonth(rs.getInt(Constant.PUBLICATION__PRICE_FOR_MONTH));
                 return publication;
             } catch (SQLException e) {
                 throw new IllegalStateException(e);

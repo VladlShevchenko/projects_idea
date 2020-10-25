@@ -14,5 +14,8 @@ public final class Path {
     public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";
     public static final String COMMAND__LIST_MENU = "/controller?command=listMenu";
 
-    public static final String PAGE__CART ="jsp/publicationView.jsp";
+    public static final String PAGE__CART ="jsp/cart.jsp";
+    public static final String PAGE__ACCOUNT_ADMIN ="jsp/admin/account.jsp";
+    public static final String PAGE__ACCOUNT_USER ="jsp/user/account.jsp";
+    public static final String PAGE__LOGIN ="/login.html";
 }

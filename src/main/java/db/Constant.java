@@ -11,7 +11,7 @@ public final class Constant {
     public static final String USER__EMAIL = "email";
     public static final String USER__ROLE_ID = "role_id";
 
-    public static final String RECEIPT__USER_ID = "user_id";
+    public static final String RECEIPT__USER_ID = "account_id";
     public static final String RECEIPT__STATUS_ID= "status_id";
 
     public static final String TOPIC__NAME = "name";
