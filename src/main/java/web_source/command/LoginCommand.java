@@ -63,9 +63,7 @@ public class LoginCommand extends Command {
             if (userRole == Role.ADMIN)
                 forward = Path.PAGE__ACCOUNT_ADMIN;
             else {
-                if (userRole == Role.USER)
                     forward = Path.PAGE__ACCOUNT_USER;
-                else forward=Path.PAGE__LIST_MENU;
             }
 
 

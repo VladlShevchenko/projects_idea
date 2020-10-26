@@ -17,14 +17,16 @@ public class UserDao {
             "SELECT * FROM account WHERE login=?";
     private static final String SQL__FIND_USER_BY_LOGIN_AND_PASS =
             "select * from account where login=? and password=?";
-    private static final String SQL__FIND_USERS =
+    private static final String SQL__FIND_ALL_USERS =
             "SELECT * FROM account";
+    private static final String SQL__FIND_USERS =
+            "SELECT * FROM account where role_id !=1";
 
     private static final String SQL__FIND_USER_BY_ID =
             "SELECT * FROM account WHERE id=?";
 
     private static final String SQL_UPDATE_USER =
-            "UPDATE account SET login=?, email=?, password=?, bill=?"+
+            "UPDATE account SET login=?, email=?, password=?, bill=?, role_id=?"+
                     "	WHERE id=?";
 
     /**
@@ -34,7 +36,7 @@ public class UserDao {
      *            User identifier.
      * @return User entity.
      */
-    public static User findUser(Long id) {
+    public static User findUserById(Long id) {
         User user = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -77,6 +79,27 @@ public class UserDao {
 
 
     public static List<User> findAllUsers() {
+        List<User> userList = new ArrayList<User>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            UserDao.UserMapper mapper = new UserDao.UserMapper();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL__FIND_ALL_USERS);
+            while (rs.next())
+                userList.add(mapper.mapRow(rs));
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return userList;
+    }
+
+    public static List<User> findOnlyUsers() {
         List<User> userList = new ArrayList<User>();
         Statement stmt = null;
         ResultSet rs = null;
@@ -164,6 +187,7 @@ public class UserDao {
         pstmt.setString(k++, user.getEmail());
         pstmt.setString(k++, user.getPassword());
         pstmt.setFloat(k++, user.getBill());
+        pstmt.setInt(k++, user.getRoleId());
         pstmt.setLong(k, user.getId());
         pstmt.executeUpdate();
         pstmt.close();

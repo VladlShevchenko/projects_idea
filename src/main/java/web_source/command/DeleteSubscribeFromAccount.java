@@ -24,14 +24,12 @@ public class DeleteSubscribeFromAccount extends Command {
         HttpSession session = request.getSession();
 
         String publicationId = request.getParameter("publicationId");
-        /*StringBuilder stringBuilder=new StringBuilder();
-        stringBuilder.append(publicationId);*/
         log.trace("publicationList --> " + publicationId);
         System.out.println(publicationId);
+
         int pubId=Integer.parseInt(publicationId);
 
         User user = (User) session.getAttribute("user");
-
         System.out.println(user);
 
         Receipt receipt = new ReceiptDao().findReceiptForCart(user.getId(),pubId);

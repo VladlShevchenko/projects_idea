@@ -121,6 +121,26 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>blockUser</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>blockUser</servlet-name>
+        <url-pattern>/blockUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>unblockUser</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>unblockUser</servlet-name>
+        <url-pattern>/unblockUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>viewAccounts</servlet-name>
         <servlet-class>web_source.FrontController</servlet-class>
     </servlet>

@@ -53,7 +53,7 @@ public class PublicationViewCommand extends Command {
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
 
-        if(session.getAttribute("userRole")!=null) {
+        if(user.getRoleId()==1 || user.getRoleId()==2) {
         forward=Path.PAGE__PUBLICATION_VIEW;
         }
         else

@@ -36,9 +36,11 @@ public class Demo {
         }
         List<Receipt> receiptsAft = new ReceiptDao().findReceiptForBuy(3);
         System.out.println(receiptsAft);*/
-String role="ADMIN";
-boolean b=role.equals(Constant.ROLE_ADMIN);
-        System.out.println(b);
+        List<User> accounts = new UserDao().findOnlyUsers();
+        User user=new User();
+        user.setRoleId(3);
+        Role userRole = Role.getRole(user);
+        System.out.println(userRole);
        /* User user = new User();
         user.setLogin("Ira");
         user.setEmail("irOchka");

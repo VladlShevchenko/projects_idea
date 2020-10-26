@@ -20,7 +20,7 @@ public class ViewAccountsCommand extends Command {
         log.debug("Command starts");
 
         // get publications list
-        List<User> accounts = new UserDao().findAllUsers();
+        List<User> accounts = new UserDao().findOnlyUsers();
         log.trace("Found in DB: publicationList --> " + accounts);
 
 

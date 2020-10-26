@@ -49,7 +49,25 @@
                 <td>${account.email}</td>
                 <td>${account.bill}</td>
                 <td>${account.roleId}</td>
-                <td>  <button><fmt:message key="block"/></button>  / <button><fmt:message key="unblock"/></button> </td>
+                <td>
+                    <!-- *********  Buttons Block\Unblock  ********** -->
+                    <c:choose>
+                        <c:when test="${account.roleId==2}">
+                            <form  action="blockUser" method="post" >
+                                <input type="hidden" name="command" value="blockUser"/>
+                                <input type="hidden" name="userId" value="${account.id}"/>
+                                <button><fmt:message key="block"/></button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <form  action="unblockUser" method="post" >
+                                <input type="hidden" name="command" value="unblockUser"/>
+                                <input type="hidden" name="userId" value="${account.id}"/>
+                                <button><fmt:message key="unblock"/></button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
             </tr>
         </c:forEach>
     </form>
