@@ -25,7 +25,7 @@ public class AccountCommand extends Command {
         log.debug("Command starts");
         String forward=Path.PAGE__ERROR_PAGE;
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("user"));
+        System.out.println(session.getAttribute("userRole"));
         if(session.getAttribute("user")!=null){
         User account = (User) session.getAttribute("user");
 
@@ -48,7 +48,7 @@ public class AccountCommand extends Command {
             else forward=Path.PAGE__ACCOUNT_USER;
         }
         else
-            forward=Path.PAGE__LOGIN;
+            forward=Path.PAGE__WELCOME;
         return forward;
     }
 }

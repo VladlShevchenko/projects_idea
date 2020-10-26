@@ -21,16 +21,15 @@ public class CartCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        String forward = Path.PAGE__ERROR_PAGE;
+
         // obtain login and password from the request
         if(request.getParameter("publication_id")!=null) {
             int publicationId = Integer.parseInt(request.getParameter("publication_id"));
             log.trace("Request parameter: loging --> " + publicationId);
             System.out.println(publicationId);
 
-
-
             System.out.println(user);
-
             //create new order
             Receipt newReceipt = new Receipt();
             newReceipt.setUserId((long) user.getId());
@@ -50,7 +49,7 @@ public class CartCommand extends Command {
 
             // error handler
             String errorMessage = null;
-            String forward = Path.PAGE__ERROR_PAGE;
+
 
             List<Publication> publications = Collections.singletonList(PublicationDao.findPublicationById(publicationId));
             log.trace("Found in DB: user --> " + publications);
@@ -60,8 +59,16 @@ public class CartCommand extends Command {
         System.out.println(publication);
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
+        //checking roles
+        if(user.getRoleId()==1||user.getRoleId()==2)
+            forward=Path.PAGE__CART;
+        else{
+            forward=Path.PAGE__ERROR_PAGE;
+            String error="You must sign in to buy something";
+            request.setAttribute("error_message",error);
+        }
 
         log.debug("Command finished");
-        return Path.PAGE__CART;
+        return forward;
     }
 }

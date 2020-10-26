@@ -24,6 +24,7 @@ public class CommandSource {
             commands.put("logout", new LogoutCommand());
             commands.put("buy", new BuyCommand());
             commands.put("deleteSubscribe", new DeleteSubscribeFromAccount());
+            commands.put("viewAccounts", new ViewAccountsCommand());
 
            /* commands.put("noCommand", new NoCommand());
             commands.put("viewSettings", new ViewSettingsCommand());

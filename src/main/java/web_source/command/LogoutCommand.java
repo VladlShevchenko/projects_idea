@@ -23,6 +23,6 @@ public class LogoutCommand extends Command {
             session.removeAttribute("userRole");
 
         log.debug("Command finished");
-        return Path.PAGE__LOGIN;
+        return Path.PAGE__WELCOME;
     }
 }

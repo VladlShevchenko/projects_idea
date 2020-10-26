@@ -17,7 +17,6 @@
         <div id="menu">
             <ul>
                 <li><a href="index.jsp" class="active">Home</a></li>
-                <li><a href="/jsp/add.jsp">About</a></li>
                 <li><a href="ourwork.html">Our work</a></li>
                 <li><a onclick="location.href='publicationView?command=account'">Account</a></li>
                 <li><a href="login.html">Sign In</a></li>

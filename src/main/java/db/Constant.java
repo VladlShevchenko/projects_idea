@@ -4,7 +4,8 @@ public final class Constant {
 
     // entities
     public static final String ENTITY__ID = "id";
-
+    public static final String ROLE_ADMIN = "ADMIN";
+    public static final String ROLE_USER = "USER";
     public static final String USER__LOGIN = "login";
     public static final String USER__PASSWORD = "password";
     public static final String USER__BILL = "bill";

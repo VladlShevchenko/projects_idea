@@ -28,14 +28,17 @@ public class Demo {
      //   List<Publication> publications=new PublicationDao().findPublicationForAccount(3);
        // List<Publication> users_publications=new PublicationDao().findPublicationForCart(3);
        // System.out.println(publications);
-        List<Receipt> receipts = new ReceiptDao().findReceiptForBuy(3);
+       /* List<Receipt> receipts = new ReceiptDao().findReceiptForBuy(3);
         System.out.println(receipts);
         for (Receipt item : receipts) {
             item.setStatusId(1);
             ReceiptDao.updateReceipt(item);
         }
         List<Receipt> receiptsAft = new ReceiptDao().findReceiptForBuy(3);
-        System.out.println(receiptsAft);
+        System.out.println(receiptsAft);*/
+String role="ADMIN";
+boolean b=role.equals(Constant.ROLE_ADMIN);
+        System.out.println(b);
        /* User user = new User();
         user.setLogin("Ira");
         user.setEmail("irOchka");

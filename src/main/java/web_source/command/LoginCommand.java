@@ -1,6 +1,8 @@
 package web_source.command;
+import db.PublicationDao;
 import db.Role;
 import db.UserDao;
+import db.entity.Publication;
 import db.entity.User;
 import org.apache.log4j.Logger;
 import web_source.Path;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginCommand extends Command {
     private static final Logger log = Logger.getLogger(LoginCommand.class);
@@ -47,21 +51,33 @@ public class LoginCommand extends Command {
         } else {
             Role userRole = Role.getRole(user);
             log.trace("userRole --> " + userRole);
+            //for first enter
+            ArrayList<User> users=new ArrayList<User>();
+            users.add(user);
+            List<Publication> publicationsForUser=new PublicationDao().findPublicationForAccount(user.getId());
 
+            // put user the request
+            request.setAttribute("account", users);
+            // put publication the request
+            request.setAttribute("publication", publicationsForUser);
             if (userRole == Role.ADMIN)
-                forward = Path.PAGE__WELCOME_ADMIN;
+                forward = Path.PAGE__ACCOUNT_ADMIN;
+            else {
+                if (userRole == Role.USER)
+                    forward = Path.PAGE__ACCOUNT_USER;
+                else forward=Path.PAGE__LIST_MENU;
+            }
 
-            if (userRole == Role.USER)
-                forward = Path.PAGE__WELCOME_USER;
+
 
             session.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
 
             session.setAttribute("userRole", userRole);
+            System.out.println(userRole);
             log.trace("Set the session attribute: userRole --> " + userRole);
 
             log.info("User " + user + " logged as " + userRole.toString().toLowerCase());
-           // forward=Path.PAGE__WELCOME;
         }
 
 

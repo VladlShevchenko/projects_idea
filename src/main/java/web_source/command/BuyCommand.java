@@ -43,6 +43,8 @@ public class BuyCommand extends Command {
 
         if(user.getBill()<amount){
             forward= Path.PAGE__ERROR_PAGE;
+            String error="You should have more money to make this purchaise!";
+            request.setAttribute("error_message",error);
         }
         else{
         totalBill= user.getBill()-amount;

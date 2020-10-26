@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
     <servlet>
         <servlet-name>list</servlet-name>
         <servlet-class>web_source.ListServlet</servlet-class>
@@ -118,6 +119,16 @@
         <servlet-name>deleteSubscribe</servlet-name>
         <url-pattern>/deleteSubscribe</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewAccounts</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewAccounts</servlet-name>
+        <url-pattern>/viewAccounts</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>utf8filter</filter-name>
         <filter-class>web_source.filter.UtfFilter</filter-class>
@@ -126,6 +137,20 @@
     <filter-mapping>
         <filter-name>utf8filter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>web_source.filter.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>active</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/cart</url-pattern>
     </filter-mapping>
 
 </web-app>
