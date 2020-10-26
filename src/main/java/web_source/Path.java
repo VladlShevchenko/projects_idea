@@ -7,8 +7,6 @@ public final class Path {
     public static final String PAGE__ERROR_PAGE = "jsp/errorPage.jsp";
     public static final String PAGE__LIST_MENU = "jsp/publications.jsp";
     public static final String PAGE__LIST_ACCOUNTS = "jsp/admin/userTable.jsp";
-    public static final String PAGE__WELCOME_ADMIN = "jsp/admin/welcomeAdmin.jsp";
-    public static final String PAGE__WELCOME_USER = "jsp/user/welcomeUser.jsp";
     public static final String PAGE__PUBLICATION_VIEW = "jsp/publicationView.jsp";
     public static final String PAGE__PUBLICATION_VIEW_GUEST = "jsp/guestPublicationView.jsp";
 
@@ -19,5 +17,5 @@ public final class Path {
     public static final String PAGE__CART ="jsp/cart.jsp";
     public static final String PAGE__ACCOUNT_ADMIN ="jsp/admin/account.jsp";
     public static final String PAGE__ACCOUNT_USER ="jsp/user/account.jsp";
-    public static final String PAGE__LOGIN ="/login.html";
+    public static final String PAGE__LOGIN ="/login.jsp";
 }

@@ -17,8 +17,16 @@
 
     </form>
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="resources"/>
+<%@ page session="true" %>
+
+<html lang="${sessionScope.lang}">
 <html>
 <head>
     <meta charset="UTF-8">
@@ -52,27 +60,27 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'">Publications</a></li>
-                <li><a onclick="location.href='cart?command=cart'">Cart</a></li>
-                <li><a onclick="location.href='account?command=account'">Account</a></li>
-                <li><a href="login.html">Sign In</a></li>
+                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='cart?command=cart'"><fmt:message key="header.cart"/></a></li>
+                <li><a onclick="location.href='account?command=account'"><fmt:message key="header.account"/></a></li>
+                <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
             </ul>
         </div>
 
     </div>
 </div>
-<h2>Users List</h2>
+<h2><fmt:message key="publication.main"/></h2>
 <form class="login100-form validate-form" action="search" method="post" >
     <input type="hidden" name="command" value="search"/>
 <div class="wrap-input100 validate-input">
-    <input class="input100" type="text" name="pubName" placeholder="Search" title="Enter publication name here">
+    <input class="input100" type="text" name="pubName" placeholder="<fmt:message key="search"/>" title="<fmt:message key="enter.pub_name"/>">
 </div>
 <button>
-    Search
+    <fmt:message key="search"/>
 </button>
 </form>
 <table>
-    <tr><th>Name</th><th>Price</th><th>Description</th><th>Topic</th></tr>
+    <tr><th><fmt:message key="publication.name"/></th><th><fmt:message key="publication.price_for_mounth"/></th><th><fmt:message key="publication.description"/></th><th><fmt:message key="publication.topic"/></th></tr>
         <input type="hidden" name="command" value="publicationView"/>
     <div id="catalog">
         <div>
@@ -96,6 +104,7 @@
             <p><a href="#">Бытовая техника</a> <span>731</span></p>
         </div>
     </div>
+    <img src="${pageContext.request.contextPath}/images/mainer.png"/>
     <c:forEach var="publication" items="${publication}">
         <%-- Share name of publication to the command--%>
     <div id="catalog" aria-orientation="horizontal">
@@ -106,17 +115,22 @@
     </div>
 
         <tr><td><a href="publicationView?command=publicationView&view=${publication.id}">${publication.name}</a></td>
-            <td><img src="${publication.image}">
+            <td>
+
                     ${publication.priceForMonth}
                     ${publication.description}
                     ${publication.topicId}
                 <button onclick="location.href='publicationView?command=publicationView&view=${publication.id}'">
-                    View More
+                    <fmt:message key="view_more"/>
                 </button></td>
             </td>
         </tr>
     </c:forEach>
 
 </table>
+<ul>
+    <li><a href="publicationView?command=publication&sessionLocale=en"><fmt:message key="english" /></a></li>
+    <li><a href="publicationView?command=publication&sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+</ul>
 </body>
 </html>

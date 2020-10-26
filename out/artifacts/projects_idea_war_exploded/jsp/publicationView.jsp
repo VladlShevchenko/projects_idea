@@ -5,8 +5,16 @@
   Time: 14:52
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="resources"/>
+<%@ page session="true" %>
+
+<html lang="${sessionScope.lang}">
 <html>
 <head>
     <title>Title</title>
@@ -23,10 +31,10 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'">Publications</a></li>
-                <li><a onclick="location.href='cart?command=cart'">Cart</a></li>
-                <li><a onclick="location.href='account?command=account'">Account</a></li>
-                <li><a href="login.html">Sign In</a></li>
+                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='cart?command=cart'"><fmt:message key="header.cart"/></a></li>
+                <li><a onclick="location.href='account?command=account'"><fmt:message key="header.account"/></a></li>
+                <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
             </ul>
         </div>
 
@@ -36,7 +44,7 @@
 
     <form  action="cart" method="post" >
         <table>
-            <tr><th>Login</th><th></th><th></th><th></th></tr>
+            <tr><th><fmt:message key="publication.name"/></th></tr>
     <c:forEach var="publication" items="${publication}">
         <tr><td>${publication.name}</td>
             <td>${publication.priceForMonth}</td>
@@ -49,10 +57,10 @@
                 <c:if test="condition"></c:if>
             <c:choose>
             <c:when test="${statusId==1}">
-            <button>Add to cart</button>
+            <button><fmt:message key="publication.add_to_cart"/></button>
             </c:when>
             <c:otherwise>
-            <button disabled="true">Add</button>
+            <button disabled="true"><fmt:message key="publication.add_to_cart"/></button>
             </c:otherwise>
             </c:choose>
 

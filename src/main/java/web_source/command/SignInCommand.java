@@ -1,5 +1,6 @@
 package web_source.command;
 
+import db.Constant;
 import db.UserDao;
 import db.entity.User;
 import org.apache.log4j.Logger;
@@ -8,6 +9,7 @@ import web_source.Path;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class SignInCommand extends Command {
@@ -15,6 +17,7 @@ public class SignInCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String errorMessage = null;
+        HttpSession session = request.getSession();
         String forward = Path.PAGE__ERROR_PAGE;
         User user =new User();
 
@@ -37,10 +40,12 @@ public class SignInCommand extends Command {
         user.setLogin(login);
         user.setEmail(email);
         user.setPassword(password);
-        user.setBill(0);
+        user.setBill(110);
         user.setRoleId(2);
         UserDao.insertUser(user);
-        forward=Path.PAGE__WELCOME;
+        session.setAttribute("user",user);
+        session.setAttribute("userRole", Constant.ROLE_USER);
+        forward=Path.PAGE__ACCOUNT_USER;
         request.setAttribute("login", login);
         return forward;
     }
