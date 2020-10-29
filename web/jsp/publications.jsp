@@ -120,6 +120,7 @@
         </div>
     </div>
     <img src="${pageContext.request.contextPath}/images/mainer.png"/>
+    <img src="/images/woman.png"/>
     <c:forEach var="publication" items="${publication}">
         <%-- Share name of publication to the command--%>
     <div id="catalog" aria-orientation="horizontal">

@@ -23,14 +23,5 @@ public final class Constant {
     public static final String PUBLICATION__DESCRIPTION = "description";
     public static final String PUBLICATION__TOPIC_ID = "topic_id";
 
-    // beans
-    // TO DO !!!
-    public static final String USER_ORDER_BEAN__ORDER_ID = "id";
-    public static final String USER_ORDER_BEAN__USER_FIRST_NAME = "first_name";
-    public static final String USER_ORDER_BEAN__USER_LAST_NAME = "last_name";
-    public static final String USER_ORDER_BEAN__ORDER_BILL = "bill";
-    public static final String USER_ORDER_BEAN__STATUS_NAME = "name";
-
-
 
 }

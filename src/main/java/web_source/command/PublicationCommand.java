@@ -44,7 +44,7 @@ public class PublicationCommand extends Command {
         if(request.getParameter("currentPage")!=null)
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
         else currentPage =1;
-        int recordsPerPage = 2;
+        int recordsPerPage = 4;
 
         List<Publication> publications = PublicationDao.findPublicationsForPagination(currentPage,
                 recordsPerPage);

@@ -1,5 +1,8 @@
 package db;
 
+import org.apache.log4j.Logger;
+import web_source.command.DeleteSubscribeFromAccount;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -11,7 +14,7 @@ import java.sql.SQLException;
 public class DBManager {
 
     private static DBManager instance;
-
+    private static final Logger log = Logger.getLogger(DBManager.class);
     public static synchronized DBManager getInstance() {
         if (instance == null)
             instance = new DBManager();
@@ -26,14 +29,13 @@ public class DBManager {
             DataSource ds = (DataSource)envContext.lookup("jdbc/context");
             con = ds.getConnection();
         } catch (NamingException ex) {
-          // log.error("Cannot obtain a connection from the pool", ex);
+          log.error("Cannot obtain a connection from the pool", ex);
         }
         return con;
     }
 
     private DBManager() {
     }
-
 
 
     public void commitAndClose(Connection con) {
@@ -67,6 +69,5 @@ public class DBManager {
         connection.setAutoCommit(false);
         return connection;
     }
-
 
 }

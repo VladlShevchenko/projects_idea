@@ -30,7 +30,6 @@ public class FrontController extends HttpServlet {
 
         // extract command name from the request
         String commandName = request.getParameter("command");
-        //System.out.println(commandName);
         log.trace("Request parameter: command --> " + commandName);
 
         // obtain command object by its name

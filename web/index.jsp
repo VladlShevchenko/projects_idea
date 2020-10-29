@@ -62,7 +62,7 @@
 </div>
 <div class="text-center p-t-115">
             <span class="txt1">
-               <fmt:message key="h"/>
+               <fmt:message key="not_registered_yet"/>
             </span>
 
 <a class="txt2" href='signIn.jsp'>

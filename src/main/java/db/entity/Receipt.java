@@ -1,7 +1,6 @@
 package db.entity;
 
 public class Receipt extends Entity {
-    private static final long serialVersionUID = 5692708766041889396L;
 
     private int userId;
 

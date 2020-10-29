@@ -2,8 +2,6 @@ package db.entity;
 
 import com.mysql.cj.jdbc.Blob;
 public class Publication extends Entity {
-    private static final long serialVersionUID = 4716395168539434663L;
-
     private String name;
 
     private float priceForMonth;

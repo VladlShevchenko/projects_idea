@@ -21,6 +21,12 @@
     <link rel="stylesheet" type="text/css" href="style/layout.css">
     <link rel="stylesheet" type="text/css" href="style/review.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .leftimg {
+            float:left; /* Выравнивание по левому краю */
+            margin: 15px 15px 15px 0; /* Отступы вокруг картинки */
+        }
+    </style>
 </head>
 <body>
 <!-- *********  Header  ********** -->
@@ -44,32 +50,46 @@
 
 
     <form  action="cart" method="post" >
-        <table>
-            <tr><th><fmt:message key="publication.name"/></th></tr>
+
     <c:forEach var="publication" items="${publication}">
-       ${publication.name}
-                ${pageContext.request.contextPath}${publication.image}
-            ${publication.priceForMonth}
-            ${publication.description}
-            ${publication.topicId}
+            <div class=" mx-auto mt-3 " style="width: 230px;">
+                <h2 class="text-warning">${publication.name}</h2>
+            </div>
+
+            <div class="ml-5 mt-4">
+                <img src="${publication.image}" style="width: 240px;" class="leftimg"/>
+                <h5><fmt:message key="publication.id"/>  ${publication.id}</h5>
+                <h5><fmt:message key="publication.description"/>:</h5>
+                <h5 class="text-secondary">${publication.description}</h5>
+                <h5><fmt:message key="publication.lg"/></h5>
+                <div class="float-right mr-5">
+                    <h5 class="text-warning"> 2020</h5>
+                </div>
+
+                <h5><fmt:message key="publication.year"/></h5>
+                <br><br><br><br><br><br>
+                <div class=" mr-5 mt-3">
+                    <h5><fmt:message key="publication.price_for_mounth"/> ${publication.priceForMonth}</h5>
+                </div>
+            </div>
 
             <input type="hidden" name="command" value="cart"/>
             <input type="hidden" name="publication_id" value="${publication.id}"/>
                 <c:if test="condition"></c:if>
             <c:choose>
             <c:when test="${statusId==1}">
-            <button class="btn btn-warning btn-lg"><fmt:message key="publication.add_to_cart"/></button>
+            <div class="float-right mr-5">
+            <button class="btn btn-warning btn-block"><fmt:message key="publication.add_to_cart"/></button>
+            </div>
             </c:when>
             <c:otherwise>
+            <div class="float-right mr-5">
             <button disabled="true" class="btn btn-warning btn-lg"><fmt:message key="publication.add_to_cart"/></button>
+            </div>
             </c:otherwise>
             </c:choose>
-
-    </form>
-
 </c:forEach>
-
-
+    </form>
 
 
 </body>

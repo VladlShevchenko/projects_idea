@@ -106,7 +106,13 @@ public class PublicationDao {
         return publicationsList;
     }
 
-    //method for pagination
+
+    /**
+     * method for pagination
+     * Returns selected amount of items.
+     *
+     * @return List of publications entities.
+     */
     public static List<Publication> findPublicationsForPagination(int currentPage, int recordsPerPage) {
         List<Publication> publicationsList = new ArrayList<Publication>();
         int start = currentPage * recordsPerPage - recordsPerPage;
@@ -132,7 +138,11 @@ public class PublicationDao {
         }
         return publicationsList;
     }
-
+    /**
+     * Returns selected amount of items.
+     *
+     * @return List of publications by account id.
+     */
     public static List<Publication> findPublicationForCart(int account_id) {
         List<Publication> publications = new ArrayList<Publication>();
         PreparedStatement pstmt = null;
@@ -156,7 +166,11 @@ public class PublicationDao {
         }
         return publications;
     }
-
+    /**
+     * Returns selected amount of items.
+     *
+     * @return List of publications with status id = 1.
+     */
     public static List<Publication> findPublicationForAccount(int account_id) {
         List<Publication> publications = new ArrayList<Publication>();
         PreparedStatement pstmt = null;
@@ -184,6 +198,11 @@ public class PublicationDao {
 
 
     ////Sorting methods!!!
+    /**
+     * sorting methods
+     *
+     * @return List of publications entities sorted by name.
+     */
     public static List<Publication> sortPublicationsByName() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
@@ -204,7 +223,11 @@ public class PublicationDao {
         }
         return publicationsList;
     }
-
+    /**
+     * sorting methods
+     *
+     * @return List of publications entities sorted by name desc.
+     */
     public static List<Publication> sortPublicationsByNameDesk() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
@@ -225,6 +248,12 @@ public class PublicationDao {
         }
         return publicationsList;
     }
+
+    /**
+     * sorting methods
+     *
+     * @return List of publications entities sorted by price.
+     */
     public static List<Publication> sortPublicationsByPrice() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
@@ -245,6 +274,11 @@ public class PublicationDao {
         }
         return publicationsList;
     }
+    /**
+     * sorting methods
+     *
+     * @return List of publications entities sorted by price desc.
+     */
     public static List<Publication> sortPublicationsByPriceDesc() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
@@ -265,7 +299,7 @@ public class PublicationDao {
         }
         return publicationsList;
     }
-  ////Sorting methods!!!
+
     /**
      * Returns publications of the given receipt.
      *
@@ -293,6 +327,11 @@ public class PublicationDao {
         }
         return publicationsList;
     }
+    /**
+     * Returns all publication items with some name
+     *
+     * @return List of publications.
+     */
     public static Publication findPublicationByName(String name) {
         Publication publication = null;
         PreparedStatement pstmt = null;
@@ -316,6 +355,11 @@ public class PublicationDao {
         }
         return publication;
     }
+    /**
+     * Returns all publication items by topic id
+     *
+     * @return List of publications.
+     */
     public static List<Publication> findPublicationByTopic(int topicId) {
         List<Publication> publicationsList = new ArrayList<Publication>();
         PreparedStatement pstmt = null;
@@ -340,6 +384,11 @@ public class PublicationDao {
         return publicationsList;
     }
 
+    /**
+     * Returns all publication items by publication id
+     *
+     * @return List of publications.
+     */
     public static Publication findPublicationById(int id) {
         Publication publication = null;
         PreparedStatement pstmt = null;
@@ -363,12 +412,6 @@ public class PublicationDao {
         }
         return publication;
     }
-    /**
-     * Returns publications with given identifiers.
-     *
-     * @param ids Identifiers of publications.
-     * @return List of publications entities.
-     */
 
     /**
      * Extracts a topic from the result set row.
@@ -409,7 +452,9 @@ public class PublicationDao {
             }
         }
     }
-
+    /**
+     * Extracts a publication from the result set row for cart.
+     */
     private static class PublicationMapperForCart implements EntityMapper<Publication> {
 
         @Override

@@ -2,8 +2,6 @@ package db.entity;
 
 public class User extends Entity {
 
-    private static final long serialVersionUID = -6889036256149495388L;
-
     private String login;
 
     private String password;

@@ -19,7 +19,13 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="style/layout.css">
     <link rel="stylesheet" type="text/css" href="style/review.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .leftimg {
+            float:left; /* Выравнивание по левому краю */
+            margin: 15px 15px 15px 0; /* Отступы вокруг картинки */
+        }
+    </style>
 </head>
 <body>
 <!-- *********  Header  ********** -->
@@ -38,18 +44,32 @@
 
     </div>
 </div>
-<table>
-    <tr><th><fmt:message key="publication.name"/></th><th></th><th></th><th></th></tr>
-    <form  action="cart" method="post" >
+
         <c:forEach var="publication" items="${publication}">
-            <tr><td>${publication.name}</td>
-                <td>${publication.priceForMonth}</td>
-                <td>${publication.description}</td>
-                <td>${publication.topicId}</td>
-            </tr>
+        <div class=" mx-auto mt-3 " style="width: 230px;">
+            <h2 class="text-warning">${publication.name}</h2>
+        </div>
+
+        <div class="ml-5 mt-4">
+            <img src="${publication.image}" style="width: 240px;" class="leftimg"/>
+            <h5><fmt:message key="publication.id"/>  ${publication.id}</h5>
+            <h5><fmt:message key="publication.description"/>:</h5>
+            <h5 class="text-secondary">${publication.description}</h5>
+            <h5><fmt:message key="publication.lg"/></h5>
+            <div class="float-right mr-5">
+                <h5 class="text-warning"> 2020</h5>
+            </div>
+
+            <h5><fmt:message key="publication.year"/></h5>
+            <br><br><br><br>
+            <div class="float-left mr-5 mt-3">
+                <h5><fmt:message key="publication.price_for_mounth"/> ${publication.priceForMonth}</h5>
+            </div>
+        </div>
         </c:forEach>
-    </form>
-</table>
-<p> <fmt:message key="you_must"/> <a href="index.jsp"> <fmt:message key="account.signIn"/></a> <fmt:message key="buy_something"/></p>
+</form>
+<div class="float-right mr-5 mt-3">
+<h5><fmt:message key="you_must"/> <a href="index.jsp"> <fmt:message key="account.signIn"/></a> <fmt:message key="buy_something"/></h5>
+</div>
 </body>
 </html>
