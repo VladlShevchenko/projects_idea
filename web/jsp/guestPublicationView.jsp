@@ -19,6 +19,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="style/layout.css">
     <link rel="stylesheet" type="text/css" href="style/review.css">
+
 </head>
 <body>
 <!-- *********  Header  ********** -->
@@ -30,7 +31,7 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='publicationView?command=publication&currentPage=1'"><fmt:message key="header.publications"/></a></li>
                 <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
             </ul>
         </div>

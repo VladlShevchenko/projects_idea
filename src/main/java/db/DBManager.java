@@ -68,15 +68,5 @@ public class DBManager {
         return connection;
     }
 
-   /* public static void main(String[] args) {
-       Connection con=null;
-       try{
-           con=DBManager.getInstance().getConnectionWithDriverManager();
-           System.out.println("Success");
-       } catch (SQLException throwables) {
-           throwables.printStackTrace();
-       }
-
-    }*/
 
 }

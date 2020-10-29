@@ -5,15 +5,6 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>list</servlet-name>
-        <servlet-class>web_source.ListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>list</servlet-name>
-        <url-pattern>/servlet1</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>web_source.FrontController</servlet-class>
     </servlet>
@@ -149,6 +140,28 @@
         <servlet-name>viewAccounts</servlet-name>
         <url-pattern>/viewAccounts</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sortByTopic</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>sortByTopic</servlet-name>
+        <url-pattern>/sortByTopic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sortByParam</servlet-name>
+        <servlet-class>web_source.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>sortByParam</servlet-name>
+        <url-pattern>/sortByParam</url-pattern>
+    </servlet-mapping>
+
+
     <filter>
         <filter-name>utf8filter</filter-name>
         <filter-class>web_source.filter.UtfFilter</filter-class>

@@ -8,7 +8,7 @@ public class Publication extends Entity {
 
     private float priceForMonth;
 
-    private Blob image;
+    private String image;
     private String description;
 
     private Long topicId;
@@ -21,7 +21,7 @@ public class Publication extends Entity {
         this.priceForMonth = priceForMonth;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -41,7 +41,7 @@ public class Publication extends Entity {
         return priceForMonth;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -55,7 +55,7 @@ public class Publication extends Entity {
     @Override
     public String toString() {
         return "Publication [name=" + name + ", price for month=" + priceForMonth + ", imageBlob="
-                + image + ", description=" + description +", topicId" + topicId +
+                + image + ", description=" + description +", topicId=" + topicId +
                 ", getId()=" + getId() + "]";
     }
 

@@ -2,8 +2,10 @@ package db;
 
 import db.entity.Publication;
 import db.entity.Receipt;
+import db.entity.Topic;
 import db.entity.User;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,11 +38,9 @@ public class Demo {
         }
         List<Receipt> receiptsAft = new ReceiptDao().findReceiptForBuy(3);
         System.out.println(receiptsAft);*/
-        List<User> accounts = new UserDao().findOnlyUsers();
-        User user=new User();
-        user.setRoleId(3);
-        Role userRole = Role.getRole(user);
-        System.out.println(userRole);
+        ArrayList<Publication> publications=new ArrayList<Publication>();
+        publications= (ArrayList<Publication>) PublicationDao.findPublicationByTopic(2);
+        System.out.println(publications);
        /* User user = new User();
         user.setLogin("Ira");
         user.setEmail("irOchka");

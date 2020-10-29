@@ -14,6 +14,8 @@ import java.util.List;
 public class PublicationDao {
     private static final String SQL__FIND_ALL_PUBLICATIONS =
             "SELECT * FROM publication";
+    private static final String SQL__FIND_ALL_PUBLICATIONS_WITH_LIMIT =
+            "SELECT * FROM publication LIMIT ?,?";
 
     private static final String SQL__FIND_PUBLICATIONS_BY_ACCOUNT =
             "select mydb.publication.id ,mydb.receipt.id,mydb.publication.name, mydb.publication.price_for_mounth\n" +
@@ -29,37 +31,40 @@ public class PublicationDao {
 
     private static final String SQL__FIND_PULICATION_BY_NAME =
             "SELECT * FROM publication WHERE name LIKE ?";
+
+    private static final String SQL__FIND_PULICATION_BY_TOPIC =
+            "SELECT * FROM publication WHERE topic_id=?";
     private static final String SQL__FIND_PULICATION_BY_Id =
             "SELECT * FROM publication WHERE id=?";
 
     private static final String SORT_PUBLICATIONS_BY_NAME_ASC =
             "SELECT * FROM publication ORDER BY name";
 
-    private static final String SORT_PUBLICATIONS_BY_NAME_DESK =
-            "SELECT * FROM publication ORDER BY name DESK";
+    private static final String SORT_PUBLICATIONS_BY_NAME_DESC =
+            "SELECT * FROM publication ORDER BY name DESC";
 
     private static final String SORT_PUBLICATIONS_BY_PRICE =
             "SELECT * FROM publication ORDER BY price_for_mounth";
     private static final String SORT_PUBLICATIONS_BY_PRICE_DESK =
-            "SELECT * FROM publication ORDER BY price_for_mounth DESK";
+            "SELECT * FROM publication ORDER BY price_for_mounth DESC";
     private static final String SQL__FIND_PUBLICATIONS_BY_RECEIPT =
             "select * from publication where id in (select publication_id from receipt_has_publication where receipt_id=?)";
 
     private static final String SQL__FIND_ALL_TOPICS =
-            "SELECT * FROM topic";
+            "SELECT * FROM mydb.topic";
 
     /**
      * Returns all categories.
      *
      * @return List of topic entities.
      */
-    public List<Topic> findTopic() {
+    public static List<Topic> findTopic() {
         List<Topic> topicList = new ArrayList<Topic>();
         Statement stmt = null;
         ResultSet rs = null;
         Connection con = null;
         try {
-            con = DBManager.getInstance().getConnection();
+            con = DBManager.getInstance().getConnectionWithDriverManager();
             TopicMapper mapper = new TopicMapper();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL__FIND_ALL_TOPICS);
@@ -101,6 +106,32 @@ public class PublicationDao {
         return publicationsList;
     }
 
+    //method for pagination
+    public static List<Publication> findPublicationsForPagination(int currentPage, int recordsPerPage) {
+        List<Publication> publicationsList = new ArrayList<Publication>();
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationMapper mapper = new PublicationMapper();
+            pstmt = con.prepareStatement(SQL__FIND_ALL_PUBLICATIONS_WITH_LIMIT);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, recordsPerPage);
+            rs = pstmt.executeQuery();
+            while (rs.next())
+                publicationsList.add(mapper.mapRow(rs));
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publicationsList;
+    }
 
     public static List<Publication> findPublicationForCart(int account_id) {
         List<Publication> publications = new ArrayList<Publication>();
@@ -153,13 +184,13 @@ public class PublicationDao {
 
 
     ////Sorting methods!!!
-    public List<Publication> sortPublicationsByName() {
+    public static List<Publication> sortPublicationsByName() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
         ResultSet rs = null;
         Connection con = null;
         try {
-            con = DBManager.getInstance().getConnection();
+            con = DBManager.getInstance().getConnectionWithDriverManager();
             PublicationMapper mapper = new PublicationMapper();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SORT_PUBLICATIONS_BY_NAME_ASC);
@@ -174,16 +205,16 @@ public class PublicationDao {
         return publicationsList;
     }
 
-    public List<Publication> sortPublicationsByNameDesk() {
+    public static List<Publication> sortPublicationsByNameDesk() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
         ResultSet rs = null;
         Connection con = null;
         try {
-            con = DBManager.getInstance().getConnection();
+            con = DBManager.getInstance().getConnectionWithDriverManager();
             PublicationMapper mapper = new PublicationMapper();
             stmt = con.createStatement();
-            rs = stmt.executeQuery(SORT_PUBLICATIONS_BY_NAME_DESK);
+            rs = stmt.executeQuery(SORT_PUBLICATIONS_BY_NAME_DESC);
             while (rs.next())
                 publicationsList.add(mapper.mapRow(rs));
         } catch (SQLException ex) {
@@ -194,16 +225,36 @@ public class PublicationDao {
         }
         return publicationsList;
     }
-    public List<Publication> sortPublicationsByPrice() {
+    public static List<Publication> sortPublicationsByPrice() {
         List<Publication> publicationsList = new ArrayList<Publication>();
         Statement stmt = null;
         ResultSet rs = null;
         Connection con = null;
         try {
-            con = DBManager.getInstance().getConnection();
+            con = DBManager.getInstance().getConnectionWithDriverManager();
             PublicationMapper mapper = new PublicationMapper();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SORT_PUBLICATIONS_BY_PRICE);
+            while (rs.next())
+                publicationsList.add(mapper.mapRow(rs));
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publicationsList;
+    }
+    public static List<Publication> sortPublicationsByPriceDesc() {
+        List<Publication> publicationsList = new ArrayList<Publication>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationMapper mapper = new PublicationMapper();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SORT_PUBLICATIONS_BY_PRICE_DESK);
             while (rs.next())
                 publicationsList.add(mapper.mapRow(rs));
         } catch (SQLException ex) {
@@ -265,6 +316,29 @@ public class PublicationDao {
         }
         return publication;
     }
+    public static List<Publication> findPublicationByTopic(int topicId) {
+        List<Publication> publicationsList = new ArrayList<Publication>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = DBManager.getInstance().getConnectionWithDriverManager();
+            PublicationDao.PublicationMapper mapper = new PublicationDao.PublicationMapper();
+            pstmt = con.prepareStatement(SQL__FIND_PULICATION_BY_TOPIC);
+            pstmt.setInt(1, topicId);
+            rs = pstmt.executeQuery();
+            while (rs.next())
+                publicationsList.add(mapper.mapRow(rs));
+            rs.close();
+            pstmt.close();
+        } catch (SQLException ex) {
+            DBManager.getInstance().rollbackAndClose(con);
+            ex.printStackTrace();
+        } finally {
+            DBManager.getInstance().commitAndClose(con);
+        }
+        return publicationsList;
+    }
 
     public static Publication findPublicationById(int id) {
         Publication publication = null;
@@ -295,35 +369,6 @@ public class PublicationDao {
      * @param ids Identifiers of publications.
      * @return List of publications entities.
      */
-    public List<Publication> findMenuItems(String[] ids) {
-        List<Publication> publicationsList = new ArrayList<Publication>();
-        Statement stmt = null;
-        ResultSet rs = null;
-        Connection con = null;
-        try {
-            con = DBManager.getInstance().getConnection();
-            PublicationMapper mapper = new PublicationMapper();
-
-            // create SQL query like "... id IN (1, 2, 7)"
-            StringBuilder query = new StringBuilder(
-                    "SELECT * FROM menu WHERE id IN (");
-            for (String idAsString : ids)
-                query.append(idAsString).append(',');
-            query.deleteCharAt(query.length() - 1);
-            query.append(')');
-
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(query.toString());
-            while (rs.next())
-                publicationsList.add(mapper.mapRow(rs));
-        } catch (SQLException ex) {
-            DBManager.getInstance().rollbackAndClose(con);
-            ex.printStackTrace();
-        } finally {
-            DBManager.getInstance().commitAndClose(con);
-        }
-        return publicationsList;
-    }
 
     /**
      * Extracts a topic from the result set row.
@@ -355,7 +400,7 @@ public class PublicationDao {
                 publication.setId(rs.getInt(Constant.ENTITY__ID));
                 publication.setName(rs.getString(Constant.PUBLICATION__NAME));
                 publication.setPriceForMonth(rs.getInt(Constant.PUBLICATION__PRICE_FOR_MONTH));
-                publication.setImage((Blob) rs.getBlob(Constant.PUBLICATION__IMAGE));
+                publication.setImage( rs.getString(Constant.PUBLICATION__IMAGE));
                 publication.setDescription(rs.getString(Constant.PUBLICATION__DESCRIPTION));
                 publication.setTopicId(rs.getLong(Constant.PUBLICATION__TOPIC_ID));
                 return publication;

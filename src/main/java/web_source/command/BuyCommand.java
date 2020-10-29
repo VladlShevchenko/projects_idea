@@ -5,6 +5,7 @@ import db.ReceiptDao;
 import db.UserDao;
 import db.entity.Publication;
 import db.entity.Receipt;
+import db.entity.Topic;
 import db.entity.User;
 import org.apache.log4j.Logger;
 import web_source.Path;
@@ -58,6 +59,9 @@ public class BuyCommand extends Command {
 
             List<Publication> publicationsForView = new PublicationDao().findPublications();
             request.setAttribute("publication", publicationsForView);
+
+            List<Topic> topic = PublicationDao.findTopic();
+            request.setAttribute("topic",topic);
 
             log.trace("Set the request attribute: publications --> " + publicationsForView);
 

@@ -20,6 +20,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="style/layout.css">
     <link rel="stylesheet" type="text/css" href="style/review.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
 <!-- *********  Header  ********** -->
@@ -31,7 +32,7 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='publicationView?command=publication&currentPage=1'"><fmt:message key="header.publications"/></a></li>
                 <li><a onclick="location.href='cart?command=cart'"><fmt:message key="header.cart"/></a></li>
                 <li><a onclick="location.href='account?command=account'"><fmt:message key="header.account"/></a></li>
                 <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
@@ -46,21 +47,21 @@
         <table>
             <tr><th><fmt:message key="publication.name"/></th></tr>
     <c:forEach var="publication" items="${publication}">
-        <tr><td>${publication.name}</td>
-            <td>${publication.priceForMonth}</td>
-            <td>${publication.description}</td>
-            <td>${publication.topicId}</td>
-        </tr>
-        </table>
+       ${publication.name}
+                ${pageContext.request.contextPath}${publication.image}
+            ${publication.priceForMonth}
+            ${publication.description}
+            ${publication.topicId}
+
             <input type="hidden" name="command" value="cart"/>
             <input type="hidden" name="publication_id" value="${publication.id}"/>
                 <c:if test="condition"></c:if>
             <c:choose>
             <c:when test="${statusId==1}">
-            <button><fmt:message key="publication.add_to_cart"/></button>
+            <button class="btn btn-warning btn-lg"><fmt:message key="publication.add_to_cart"/></button>
             </c:when>
             <c:otherwise>
-            <button disabled="true"><fmt:message key="publication.add_to_cart"/></button>
+            <button disabled="true" class="btn btn-warning btn-lg"><fmt:message key="publication.add_to_cart"/></button>
             </c:otherwise>
             </c:choose>
 

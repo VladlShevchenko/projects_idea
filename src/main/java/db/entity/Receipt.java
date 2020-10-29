@@ -3,15 +3,15 @@ package db.entity;
 public class Receipt extends Entity {
     private static final long serialVersionUID = 5692708766041889396L;
 
-    private Long userId;
+    private int userId;
 
     private int statusId;
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

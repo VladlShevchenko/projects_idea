@@ -33,7 +33,7 @@ public class PublicationViewCommand extends Command {
         log.trace("publicationList --> " + publicationId);
         System.out.println(publicationId);
         int pubId=Integer.parseInt(publicationId);
-        System.out.println(publicationId);
+        System.out.println(user);
         List<Publication> publication= Collections.singletonList(PublicationDao.findPublicationById(pubId));
         System.out.println(publication);
         log.trace("Found in DB: publicationList --> " + publication);
@@ -52,9 +52,12 @@ public class PublicationViewCommand extends Command {
         // put publication items list to the request
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
-
-        if(user.getRoleId()==1 || user.getRoleId()==2) {
-        forward=Path.PAGE__PUBLICATION_VIEW;
+        if(user!=null) {
+            if (user.getRoleId() == 1 || user.getRoleId() == 2) {
+                forward = Path.PAGE__PUBLICATION_VIEW;
+            }
+            else
+                forward=Path.PAGE__PUBLICATION_VIEW_GUEST;
         }
         else
             forward=Path.PAGE__PUBLICATION_VIEW_GUEST;

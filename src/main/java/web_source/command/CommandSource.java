@@ -27,6 +27,8 @@ public class CommandSource {
             commands.put("viewAccounts", new ViewAccountsCommand());
             commands.put("blockUser", new BlockCommand());
             commands.put("unblockUser", new UnblockCommand());
+            commands.put("sortByTopic", new SortByTopicCommand());
+            commands.put("sortByParam", new SelectByParamCommand());
 
            /* commands.put("noCommand", new NoCommand());
             commands.put("viewSettings", new ViewSettingsCommand());

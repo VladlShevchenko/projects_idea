@@ -32,7 +32,7 @@ public class CartCommand extends Command {
             System.out.println(user);
             //create new order
             Receipt newReceipt = new Receipt();
-            newReceipt.setUserId((long) user.getId());
+            newReceipt.setUserId(user.getId());
             newReceipt.setStatusId(2);
             ReceiptDao.insertReceipt(newReceipt);
 

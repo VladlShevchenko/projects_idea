@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="style/review.css">
     <link rel="stylesheet" type="text/css" href="style/util.css">
     <link rel="stylesheet" type="text/css" href="style/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -33,7 +34,7 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='publicationView?command=publication&currentPage=1'"><fmt:message key="header.publications"/></a></li>
                 <li><a onclick="location.href='cart?command=cart'"><fmt:message key="header.cart"/></a></li>
                 <li><a onclick="location.href='account?command=account'"><fmt:message key="header.account"/></a></li>
                 <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
@@ -42,9 +43,9 @@
 
     </div>
 </div>
-
-<table>
-    <tr><th><fmt:message key="account.id"/>    </th><th>   <fmt:message key="publication.name"/>    </th><th>    <fmt:message key="publication.year"/>    </th><th>   <fmt:message key="publication.price_for_mounth"/>   </th></tr>
+<div class="mr-5 ml-5 mt-3">
+<table class="table table-striped">
+    <tr><th><h6><fmt:message key="account.id"/>  </h6>  </th><th><h6>   <fmt:message key="publication.name"/> </h6>   </th><th> <h6>   <fmt:message key="publication.year"/>  </h6>  </th><th><h6>   <fmt:message key="publication.price_for_mounth"/>  </h6> </th><th></th></tr>
     <c:set var="priceTotal" value="${0}" />
     <c:forEach var="publication" items="${publication}">
         <c:set var="priceTotal" value="${priceTotal + publication.priceForMonth}" />
@@ -53,27 +54,36 @@
             <td>${publication.name}</td>
             <td>2020</td>
             <td>${publication.priceForMonth}</td>
-            <td> <button onclick="location.href='publicationView?command=deleteItem&publicationId=${publication.id}'">Cancel</button> </td>
+            <td> <button onclick="location.href='publicationView?command=deleteItem&publicationId=${publication.id}'"><fmt:message key="publication.remove"/></button> </td>
         </tr>
     </c:forEach>
 </table>
+<div class="float-right mr-5">
+<h5><fmt:message key="total_price"/> ${priceTotal}</h5>
+</div>
+<br><br>
 <form  action="publicaton" method="post" >
     <input type="hidden" name="command" value="publication"/>
-    <button onclick="location.href='jsp/publications.jsp'">Continue shopping</button>
+    <input type="hidden" name="currentPage" value="1"/>
+    <div class="float-left ml-4">
+    <button onclick="location.href='jsp/publications.jsp'" class="btn btn-outline-primary btn-lg"><fmt:message key="continue_shopping"/></button>
+    </div>
 </form>
-<p>Total price: ${priceTotal}</p>
 <form  action="buy" method="post" >
     <input type="hidden" name="command" value="buy"/>
     <input type="hidden" name="amount" value=${priceTotal}/>
     <c:choose>
         <c:when test="${priceTotal==0}">
-            <button disabled="true"><fmt:message key="buy"/></button>
+        <div class="float-right mr-5">
+            <button disabled="true" class="btn btn-warning btn-lg"><fmt:message key="buy"/></button>
+        </div>
         </c:when>
         <c:otherwise>
-            <button onclick="location.href='publicationView?command=account'"><fmt:message key="buy"/></button>
+        <div class="float-right mr-5">
+            <button onclick="location.href='publicationView?command=account'" class="btn btn-warning btn-lg"><fmt:message key="buy"/></button>
+        </div>
         </c:otherwise>
     </c:choose>
-
 </form>
 </body>
 </html>

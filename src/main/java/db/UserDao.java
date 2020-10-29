@@ -60,24 +60,6 @@ public class UserDao {
         return user;
     }
 
-    public static boolean validate(String name, String pass) {
-        boolean status=false;
-        try{
-
-            Connection con = DBManager.getInstance().getConnectionWithDriverManager();
-
-            PreparedStatement ps=con.prepareStatement(SQL__FIND_USER_BY_LOGIN_AND_PASS);
-            ps.setString(1,name);
-            ps.setString(2,pass);
-
-            ResultSet rs=ps.executeQuery();
-            status=rs.next();
-
-        }catch(Exception e){System.out.println(e);}
-        return status;
-    }
-
-
     public static List<User> findAllUsers() {
         List<User> userList = new ArrayList<User>();
         Statement stmt = null;

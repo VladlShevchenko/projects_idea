@@ -32,6 +32,7 @@ public class LoginCommand extends Command {
         // error handler
         String errorMessage = null;
         String forward = Path.PAGE__ERROR_PAGE;
+        request.setAttribute("error_message","Wrong login or password!");
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             errorMessage = "Login/password cannot be empty";

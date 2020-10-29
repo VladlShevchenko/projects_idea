@@ -205,7 +205,7 @@ public class ReceiptDao {
             try {
                 Receipt receipt = new Receipt();
                 receipt.setId(rs.getInt(Constant.ENTITY__ID));
-                receipt.setUserId(rs.getLong(Constant.RECEIPT__USER_ID));
+                receipt.setUserId(rs.getInt(Constant.RECEIPT__USER_ID));
                 receipt.setStatusId(rs.getInt(Constant.RECEIPT__STATUS_ID));
                 return receipt;
             } catch (SQLException e) {

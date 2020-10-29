@@ -20,6 +20,8 @@
     <title>User Table</title>
     <link rel="stylesheet" type="text/css" href="style/layout.css">
     <link rel="stylesheet" type="text/css" href="style/review.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
 </head>
 <body>
 <!-- *********  Header  ********** -->
@@ -31,7 +33,7 @@
 
         <div id="menu">
             <ul>
-                <li><a onclick="location.href='publicationView?command=publication'"><fmt:message key="header.publications"/></a></li>
+                <li><a onclick="location.href='publicationView?command=publication&currentPage=1'"><fmt:message key="header.publications"/></a></li>
                 <li><a onclick="location.href='cart?command=cart'"><fmt:message key="header.cart"/></a></li>
                 <li><a onclick="location.href='account?command=account'"><fmt:message key="header.account"/></a></li>
                 <li><a href="index.jsp"><fmt:message key="header.signIn"/></a></li>
@@ -40,8 +42,9 @@
 
     </div>
 </div>
-<table>
-    <tr><th><fmt:message key="account.id"/> </th><th><fmt:message key="account.login"/> </th><th> <fmt:message key="email"/> </th><th> <fmt:message key="bill"/> </th><th> <fmt:message key="role"/> </th></tr>
+<div class="ml-5 mt-4 mr-5">
+<table class="table table-hover">
+    <tr><th><fmt:message key="account.id"/> </th><th><fmt:message key="account.login"/> </th><th> <fmt:message key="email"/> </th><th> <fmt:message key="bill"/> </th><th> <fmt:message key="role"/> </th><th></th></tr>
     <form  action="cart" method="post" >
         <c:forEach var="account" items="${account}">
             <tr><td>${account.id}</td>
@@ -56,14 +59,14 @@
                             <form  action="blockUser" method="post" >
                                 <input type="hidden" name="command" value="blockUser"/>
                                 <input type="hidden" name="userId" value="${account.id}"/>
-                                <button><fmt:message key="block"/></button>
+                                <button class="btn btn-outline-danger"><fmt:message key="block"/></button>
                             </form>
                         </c:when>
                         <c:otherwise>
                             <form  action="unblockUser" method="post" >
                                 <input type="hidden" name="command" value="unblockUser"/>
                                 <input type="hidden" name="userId" value="${account.id}"/>
-                                <button><fmt:message key="unblock"/></button>
+                                <button class="btn btn-outline-success"><fmt:message key="unblock"/></button>
                             </form>
                         </c:otherwise>
                     </c:choose>
@@ -72,5 +75,6 @@
         </c:forEach>
     </form>
 </table>
+</div>
 </body>
 </html>
