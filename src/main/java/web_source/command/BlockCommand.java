@@ -22,7 +22,6 @@ public class BlockCommand extends Command {
     try {
         String userId = request.getParameter("userId");
         log.trace("userId --> " + userId);
-        System.out.println(userId);
         long accountId = Long.parseLong((userId));
 
         User user = UserDao.findUserById(accountId);

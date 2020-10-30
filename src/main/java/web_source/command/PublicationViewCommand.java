@@ -31,12 +31,12 @@ public class PublicationViewCommand extends Command {
 
 
         log.trace("publicationList --> " + publicationId);
-        System.out.println(publicationId);
+
         int pubId=Integer.parseInt(publicationId);
-        System.out.println(user);
+
         List<Publication> publication= Collections.singletonList(PublicationDao.findPublicationById(pubId));
-        System.out.println(publication);
-        log.trace("Found in DB: publicationList --> " + publication);
+
+        log.trace("Found in DB: receipt List --> " + publication);
         try {
             Receipt receipt= ReceiptDao.findReceiptForCart(user.getId(), pubId);
             if(receipt.getStatusId()!=0){
@@ -46,7 +46,8 @@ public class PublicationViewCommand extends Command {
                 request.setAttribute("statusId", 1);
             System.out.println(ReceiptDao.findReceiptForCart(user.getId(), pubId));
         }catch (NullPointerException ex){
-           //something like filters
+            String error="Oops!Something went wrong";
+            request.setAttribute("error_message",error);
         }
 
         // put publication items list to the request

@@ -39,8 +39,8 @@
 <span class="login100-form-title p-b-48">
             <i class="zmdi zmdi-font"></i>
         </span>
-
-<div class="wrap-input100 validate-input" >
+      <br><br>
+      <div class="wrap-input100 validate-input" >
 <input class="input100" type="text" name="username" placeholder="<fmt:message key="enter_login" />" title=<fmt:message key="enter_login" />>
 
 </div>
@@ -51,7 +51,7 @@
             </span>
 <input class="input100" type="password" name="userpass" placeholder="<fmt:message key="enter_password" />" title=<fmt:message key="enter_password" />>
 </div>
-
+      <br>
 <div class="container-login100-form-btn">
   <div class="wrap-login100-form-btn">
       <div class="login100-form-bgbtn"></div>
@@ -60,17 +60,18 @@
       </button>
   </div>
 </div>
+      <br>
 <div class="text-center p-t-115">
             <span class="txt1">
                <fmt:message key="not_registered_yet"/>
             </span>
-
 <a class="txt2" href='signIn.jsp'>
   <fmt:message key="sign_up" />
 </a>
 </div>
 
 </form>
+    <br>
 <form  action="publicaton" method="post" >
 <input type="hidden" name="command" value="publication"/>
 <input type="hidden" name="currentPage" value="1"/>

@@ -33,7 +33,7 @@
                     <input class="input100" type="text" name="userlogin" placeholder="Login" title="<fmt:message key="enter_login" />">
                 </div>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c" >
-                    <input class="input100" type="text" name="username" placeholder="Email" title="<fmt:message key="enter_email" />"">
+                    <input class="input100" type="text" name="username" placeholder="Email" title="<fmt:message key="enter_email" />">
 
                 </div>
 
@@ -41,14 +41,14 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-                    <input class="input100" type="password" name="userpass" placeholder="Password" title="<fmt:message key="enter_password" />"">
+                    <input class="input100" type="password" name="userpass" placeholder="Password" title="<fmt:message key="enter_password" />">
                 </div>
 
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
                         <button class="login100-form-btn">
-                            <fmt:message key="sign_up" />"
+                            <fmt:message key="sign_up" />
                         </button>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
                         <fmt:message key="already_registered" />"
 						</span>
 
-                    <a class="txt2" href='login.jsp'>
-                        <fmt:message key="account.signIn" />"
+                    <a class="txt2" href='index.jsp'>
+                        <fmt:message key="account.signIn" />
                     </a>
                 </div>
             </form>

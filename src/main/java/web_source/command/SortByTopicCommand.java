@@ -21,7 +21,6 @@ public class SortByTopicCommand extends Command {
         String parameter = request.getParameter("topicId");
         log.trace("Request parameter: pubName --> " + parameter);
         int topicId= Integer.parseInt(parameter);
-        System.out.println(topicId);
 
         //let's find publications with this topic
 

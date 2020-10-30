@@ -27,9 +27,7 @@ public class CartCommand extends Command {
         if(request.getParameter("publication_id")!=null) {
             int publicationId = Integer.parseInt(request.getParameter("publication_id"));
             log.trace("Request parameter: loging --> " + publicationId);
-            System.out.println(publicationId);
 
-            System.out.println(user);
             //create new order
             Receipt newReceipt = new Receipt();
             newReceipt.setUserId(user.getId());

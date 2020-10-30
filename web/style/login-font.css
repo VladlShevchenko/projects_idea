@@ -1,0 +1,151 @@
+#body{
+    background:rgba(248, 248, 248, 1);
+}
+
+#nav {
+    background: white;
+    display: flex;
+    align-items: center;
+    height:90px;
+}
+header a{
+    font-family:Rubik,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #99A2AA;
+}
+.active{
+    margin-left:60px;
+    margin-right: 20px;
+}
+li{
+    margin-left:20px;
+}
+#koshuk{
+    font-family: Rubik,sans-serif;
+    font-style: normal;
+    font-weight: 600 ;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.005em;
+    color: #0E2F4B;
+}
+#btn-cart{
+    margin-left:38px;
+}
+.call{
+    margin-left:58px;
+    font-family: Rubik,sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    line-height: 19px;
+    color: #B2B9BF;
+}
+#number{
+    font-family: Rubik,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+#h1{
+    margin-top:8px;
+    font-family: Rubik,sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 57px;
+    color: #212529;
+}
+
+#input-search{
+    margin-top: 9px;
+    padding-left: -15px;
+    width: 433px;
+    height: 70px;
+    background: #FFFFFF;
+    border: 1px solid #CED4DA;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+input::placeholder {
+    font-family: Rubik, sans-serif;
+    font-style: normal;
+    font-weight:300;
+    font-size: 16px;
+    line-height: 36px;
+    color: #0E2F4B;
+}
+#search-submit{
+    width:170px;
+    height: 70px;
+    background: #FFC107;
+    border-radius: 8px;
+    margin-top: 9px
+}
+
+#description{
+    margin-left: 76px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #212529;
+    margin-top:2px;
+}
+#show-all{
+    height: 70px;
+    width: 360px;
+    margin-left: 77px;
+    margin-bottom:20px;
+    position: absolute;
+    border: 1px solid #CED4DA;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: Rubik, sans-serif;
+    font-style: normal;
+    font-weight:300;
+    font-size: 16px;
+    line-height: 36px;
+    color: #0E2F4B;
+    padding-left: 17px;
+    padding-top:  23px;
+    padding-right: 10px;
+}
+
+#catalog{
+    margin-top:-20px;
+    margin-left:800px;
+    position: absolute;
+    width: 360px;
+    height: 70px;
+    border-radius: 8px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24px;
+    color: #0E2F4B;
+}
+.h2{
+    margin-left: 76px;
+    margin-top: 52px;
+    font-family: Rubik,sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 36px;
+    color: #212529;
+
+
+}

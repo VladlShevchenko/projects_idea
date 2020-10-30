@@ -40,12 +40,12 @@ public class UnblockCommand extends Command{
         }
 
         List<User> accounts = new UserDao().findOnlyUsers();
-        log.trace("Found in DB: publicationList --> " + accounts);
+        log.trace("Found in DB: accountList --> " + accounts);
 
 
         // put accounts list to the request
         request.setAttribute("account", accounts);
-        log.trace("Set the request attribute: publications --> " + accounts);
+        log.trace("Set the request attribute: account --> " + accounts);
 
         log.debug("Command finished");
         return forward;

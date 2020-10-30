@@ -16,7 +16,7 @@ public class SignInCommand extends Command {
     private static final Logger log = Logger.getLogger(LoginCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String errorMessage = null;
+        String errorMessage;
         HttpSession session = request.getSession();
         String forward = Path.PAGE__ERROR_PAGE;
         User user =new User();

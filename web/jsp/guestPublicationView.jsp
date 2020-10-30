@@ -46,7 +46,7 @@
 </div>
 
         <c:forEach var="publication" items="${publication}">
-        <div class=" mx-auto mt-3 " style="width: 230px;">
+        <div class=" mx-auto mt-3 " style="width: 730px;">
             <h2 class="text-warning">${publication.name}</h2>
         </div>
 

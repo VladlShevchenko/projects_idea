@@ -25,7 +25,7 @@ public class AccountCommand extends Command {
         log.debug("Command starts");
         String forward=Path.PAGE__ERROR_PAGE;
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("userRole"));
+
         if(session.getAttribute("user")!=null){
         User account = (User) session.getAttribute("user");
 

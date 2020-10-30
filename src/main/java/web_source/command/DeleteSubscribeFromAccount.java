@@ -25,16 +25,13 @@ public class DeleteSubscribeFromAccount extends Command {
 
         String publicationId = request.getParameter("publicationId");
         log.trace("publicationList --> " + publicationId);
-        System.out.println(publicationId);
 
         int pubId=Integer.parseInt(publicationId);
 
         User user = (User) session.getAttribute("user");
-        System.out.println(user);
 
         Receipt receipt = new ReceiptDao().findReceiptForCart(user.getId(),pubId);
         receipt.setStatusId(4);
-        System.out.println(receipt);
         ReceiptDao.updateReceipt(receipt);
 
 
@@ -51,7 +48,6 @@ public class DeleteSubscribeFromAccount extends Command {
         request.setAttribute("publication", publicationsForUser);
         log.trace("Set the request attribute: publications --> " + publicationsForUser);
 
-        log.debug("Command finished");
         //checking roles
         if(user.getRoleId()==1)
             forward=Path.PAGE__ACCOUNT_ADMIN;
@@ -59,7 +55,6 @@ public class DeleteSubscribeFromAccount extends Command {
 
 
         List<Publication> publication = new PublicationDao().findPublicationForCart(user.getId());
-        System.out.println(publication);
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
 

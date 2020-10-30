@@ -30,15 +30,6 @@ public class CommandSource {
             commands.put("sortByTopic", new SortByTopicCommand());
             commands.put("sortByParam", new SelectByParamCommand());
 
-           /* commands.put("noCommand", new NoCommand());
-            commands.put("viewSettings", new ViewSettingsCommand());
-            commands.put("updateSettings", new UpdateSettingsCommand());
-
-            // client commands
-            commands.put("listMenu", new ListMenuCommand());
-
-            // admin commands
-            commands.put("listOrders", new ListOrdersCommand());*/
 
             log.debug("Command container was successfully initialized");
             log.trace("Number of commands --> " + commands.size());

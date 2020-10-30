@@ -7,7 +7,6 @@ import db.entity.User;
 import org.apache.log4j.Logger;
 import web_source.Path;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +24,13 @@ public class LoginCommand extends Command {
         // obtain login and password from the request
         String login = request.getParameter("username");
         log.trace("Request parameter: loging --> " + login);
-        System.out.println(login);
 
         String password = request.getParameter("userpass");
 
         // error handler
-        String errorMessage = null;
+        String errorMessage = "Wrong login or password!";
         String forward = Path.PAGE__ERROR_PAGE;
-        request.setAttribute("error_message","Wrong login or password!");
+        request.setAttribute("error_message",errorMessage);
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             errorMessage = "Login/password cannot be empty";

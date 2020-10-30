@@ -46,6 +46,7 @@ public class PublicationCommand extends Command {
         else currentPage =1;
         int recordsPerPage = 4;
 
+
         List<Publication> publications = PublicationDao.findPublicationsForPagination(currentPage,
                 recordsPerPage);
 

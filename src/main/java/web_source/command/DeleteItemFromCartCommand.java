@@ -23,18 +23,12 @@ public class DeleteItemFromCartCommand extends Command {
         HttpSession session = request.getSession();
 
         String publicationId = request.getParameter("publicationId");
-        /*StringBuilder stringBuilder=new StringBuilder();
-        stringBuilder.append(publicationId);*/
         log.trace("publicationList --> " + publicationId);
-        System.out.println(publicationId);
         int pubId=Integer.parseInt(publicationId);
 
         User user = (User) session.getAttribute("user");
 
-        System.out.println(user);
-
         Receipt receipt = new ReceiptDao().findReceiptForCart(user.getId(),pubId);
-        System.out.println(receipt);
         new ReceiptDao().deleteReceipt(receipt.getId());
 
 
@@ -47,7 +41,6 @@ public class DeleteItemFromCartCommand extends Command {
 
 
         List<Publication> publication = new PublicationDao().findPublicationForCart(user.getId());
-        System.out.println(publication);
         request.setAttribute("publication", publication);
         log.trace("Set the request attribute: publications --> " + publication);
 

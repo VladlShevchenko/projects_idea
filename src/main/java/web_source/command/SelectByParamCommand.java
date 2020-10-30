@@ -21,7 +21,6 @@ public class SelectByParamCommand extends Command {
         String parameter = request.getParameter("paramId");
         log.trace("Request parameter: pubName --> " + parameter);
         int parameterId= Integer.parseInt(parameter);
-        System.out.println(parameterId);
 
         //let's find publications with this topic
         List<Publication> publicationsByParam=null;
